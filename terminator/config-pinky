@@ -1,0 +1,25 @@
+[global_config]
+  geometry_hinting = True
+  borderless = True
+[keybindings]
+[profiles]
+  [[default]]
+    cursor_color = "#aaaaaa"
+  [[pink-lady]]
+    background_color = "#e6c7c2"
+    cursor_color = "#aaaaaa"
+    foreground_color = "#ab1852"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    palette = "#fbd3d3:#d75151:#5c3566:#c4a000:#ce5c00:#75507b:#06989a:#d3d7cf:#555753:#f88b8b:#ad7fa8:#fce94f:#ffd328:#ad7fa8:#34e2e2:#eeeeec"
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = pink-lady
+[plugins]
