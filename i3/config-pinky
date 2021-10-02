@@ -1,0 +1,220 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Modifier settings
+# ==============================================================================
+set $mod Mod1
+
+
+# Font settings
+# ==============================================================================
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).8
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Bolt 11
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym $mod+Shift+a kill
+
+# start dmenu program launcher
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+
+# start dmenu for system program
+bindsym $mod+Shift+d exec dmenu_run
+
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+m focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+m move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+bindsym $mod+w focus child
+
+# switch to workspace
+bindsym $mod+ampersand workspace 1
+bindsym $mod+eacute workspace 2
+bindsym $mod+quotedbl workspace 3
+bindsym $mod+apostrophe workspace 4
+bindsym $mod+parenleft workspace 5
+bindsym $mod+section workspace 6
+bindsym $mod+egrave workspace 7
+bindsym $mod+exclam workspace 8
+bindsym $mod+ccedilla workspace 9
+bindsym $mod+agrave workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace 1
+bindsym $mod+Shift+eacute move container to workspace 2
+bindsym $mod+Shift+quotedbl move container to workspace 3
+bindsym $mod+Shift+apostrophe move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+section move container to workspace 6
+bindsym $mod+Shift+egrave move container to workspace 7
+bindsym $mod+Shift+exclam move container to workspace 8
+bindsym $mod+Shift+ccedilla move container to workspace 9
+bindsym $mod+Shift+agrave move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m '' -b 'Logout now' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym m resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 1 px or 1 ppt
+        bindsym Down resize grow height 1 px or 1 ppt
+        bindsym Up resize shrink height 1 px or 1 ppt
+        bindsym Right resize grow width 1 px or 1 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+#Run compton at start of i3
+#Note: Some modification will need logout to be applied
+exec compton -cCG -b -i 0.95 --vsync opengl
+
+#install desktop background with feh
+exec_always feh --bg-scale /home/max/Pictures/Wallpapers/gradienta--gmycsIe7FU-unsplash.jpg
+
+# Window settings
+# ==============================================================================
+#
+# General environment rules
+# ------------------------------------------------------------------------------
+#
+#i3-gaps config
+smart_borders on
+gaps inner 10
+gaps outer 0
+for_window [class="^.*"] border pixel 1
+focus_on_window_activation urgent
+workspace_auto_back_and_forth yes
+force_display_urgency_hint 0 ms
+focus_follows_mouse no
+
+# Window state decorations
+# ------------------------------------------------------------------------------
+#
+# NOTE some of these do not seem relevant in i3-gaps
+# order: BORDER BACKGROUND FOREGROUND INDICATOR CHILD_BORDER
+#
+client.focused $col8 $col0 $col15 $col5 $col10
+client.unfocused $col0 $col8 $col7 $col7 $col0
+client.focused_inactive $col0 $col0 $col0 $col0 $col0
+client.urgent $col1 $col1 $col8 $col1 $col1
+client.background $col8
+
+# Colour scheme
+# ------------------------------------------------------------------------------
+#
+# NOTE XXX Colours are sourced from ~/.Xresources
+# Xcolors are defined as `*.color[n]`, which exposes them to any program
+# The current setup uses these colours for URxvt, i3, and polybar
+#
+# Tempus themes: https://github.com/protesilaos/tempus-themes
+# By Protesilaos Stavrou https://protesilaos.com
+set_from_resource $col0  color0  #000000
+set_from_resource $col1  color1  #000000
+set_from_resource $col2  color2  #000000
+set_from_resource $col3  color3  #000000
+set_from_resource $col4  color4  #000000
+set_from_resource $col5  color5  #000000
+set_from_resource $col6  color6  #000000
+set_from_resource $col7  color7  #000000
+set_from_resource $col8  color8  #000000
+set_from_resource $col9  color9  #000000
+set_from_resource $col10 color10 #000000
+set_from_resource $col11 color11 #000000
+set_from_resource $col12 color12 #000000
+set_from_resource $col13 color13 #000000
+set_from_resource $col14 color14 #000000
+set_from_resource $col15 color15 #000000
+
+# Speaker volume controls
+# 
+set $mute --no-startup-id amixer set Master toggle
+set $volumeup --no-startup-id amixer set Master 5%+ && pkill -SIGRTMIN+10 i3blocks
+set $volumedown --no-startup-id amixer set Master 5%- && pkill -SIGRTMIN+10 i3blocks
+
+bindsym XF86AudioMute exec $mute
+bindsym XF86AudioLowerVolume exec $volumedown
+bindsym XF86AudioRaiseVolume exec $volumeup
+
+# Backlight controls
+#
+set $xbacklight_inc xbacklight -inc 1
+set $xbacklight_dec xbacklight -dec 1
+
+# Using and launching polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
