@@ -5,7 +5,7 @@
 
 # Modifier settings
 # ==============================================================================
-set $mod Mod1
+set $mod Mod4
 
 
 # Font settings
@@ -13,7 +13,7 @@ set $mod Mod1
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).8
 font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Bolt 11
+font pango:Cantarell 11
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -216,7 +216,6 @@ set $xbacklight_dec xbacklight -dec 1 && pkill -SIGRTMIN+11 i3blocks
 
 bindsym XF86MonBrightnessUp exec $xbacklight_inc
 bindsym XF86MonBrightnessDown exec $xbacklight_dec
-
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
